@@ -1,4 +1,4 @@
 # TwitterBot
 
-Start nodemon - npm start\n
+Start nodemon - npm start
 Start react - npm start
