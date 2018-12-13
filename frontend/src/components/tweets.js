@@ -8,7 +8,8 @@ class Tweets extends Component {
         this.state = {
             receivedTweets: [],
             username: "",
-            showUsername: false
+            showUsername: false,
+            numOfTweets: 0
         }
     }
 
@@ -16,7 +17,7 @@ class Tweets extends Component {
     }
 
     displayTweets() {
-        AuthenticationService.getTweets({username: this.state.username})
+        AuthenticationService.getTweets({username: this.state.username, numOfTweets: this.state.numOfTweets})
             .then(response => this.setState({receivedTweets: response.data}))
             .catch(response => console.log('error: ' + response))
     }
@@ -24,6 +25,10 @@ class Tweets extends Component {
     usernameChanged = (event) => {
         this.setState({showUsername: false})
         this.setState({username: event.target.value})
+    }
+
+    numOfTweetsChanged = (event) => {
+        this.setState({numOfTweets: event.target.value})
     }
 
     handleSubmitClick = () => {
@@ -47,7 +52,8 @@ class Tweets extends Component {
                 </header>
 
                 <h3>Enter Username</h3>
-                <input value={this.state.username} type="text" onChange={this.usernameChanged}></input>
+                <input placeholder = "username here" value={this.state.username} type="text" onChange={this.usernameChanged}></input>
+                <input placeholder = "# of tweets here" type="text" onChange={this.numOfTweetsChanged}></input>
                 <button value="submit" onClick={this.handleSubmitClick}>Submit</button>
 
                 {usernameDiv}

@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 app.post('/tweets', (req, res) => {
     var tweets;
     /* waits until promise is resolved/rejected before moving on */
-    getTweets(req.body.username)
+    getTweets(req.body.username, req.body.numOfTweets)
         .then( (result) => {
             tweets = result
             for (var i = 0; i < result.length; i++)
@@ -52,12 +52,12 @@ app.post('/tweets', (req, res) => {
 })
 
 /* promise */
-function getTweets(username) {
+function getTweets(username, numOfTweets) {
     var tweets;
 
     return new Promise (function(resolve, reject)
     {
-        T.get('statuses/user_timeline', {screen_name: username, count: 1000, include_rts: false, tweet_mode:'extended'}, (err, data, response) => {
+        T.get('statuses/user_timeline', {screen_name: username, count: numOfTweets, include_rts: "false", tweet_mode:'extended'}, (err, data, response) => {
             if (err) reject(err);
             else {
                 tweets = data;
