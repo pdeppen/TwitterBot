@@ -22,6 +22,7 @@ class Tweets extends Component {
     }
 
     usernameChanged = (event) => {
+        this.setState({showUsername: false})
         this.setState({username: event.target.value})
     }
 
