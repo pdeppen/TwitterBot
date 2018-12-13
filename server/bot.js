@@ -30,6 +30,10 @@ app.get('/', (req, res) => {
     })
 })
 
+/**
+ * Returns tweets requested by username
+ * (not really a post - axios doesn't send variables unless you make it a post)
+ */
 app.post('/tweets', (req, res) => {
     var tweets;
     /* waits until promise is resolved/rejected before moving on */
